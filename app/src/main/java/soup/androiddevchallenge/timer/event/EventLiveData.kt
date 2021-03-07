@@ -13,11 +13,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.androiddevchallenge.ui.theme
+package soup.androiddevchallenge.timer.event
 
-import androidx.compose.ui.graphics.Color
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 
-val purple200 = Color(0xFFBB86FC)
-val purple500 = Color(0xFF6200EE)
-val purple700 = Color(0xFF3700B3)
-val teal200 = Color(0xFF03DAC5)
+typealias EventLiveData<T> = LiveData<Event<T>>
+
+class MutableEventLiveData<T> : MutableLiveData<Event<T>>() {
+
+    var event: T?
+        get() = value?.peekContent()
+        set(value) {
+            if (value != null) {
+                setValue(Event(value))
+            }
+        }
+
+    fun postEvent(value: T?) {
+        if (value != null) {
+            postValue(Event(value))
+        }
+    }
+}

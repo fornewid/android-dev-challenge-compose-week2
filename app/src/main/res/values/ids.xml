@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="time_text" type="id"/>
+    <item name="backspace_button" type="id"/>
+    <item name="divider" type="id"/>
+    <item name="guideline" type="id"/>
+    <item name="number_pad" type="id"/>
+    <item name="start_button" type="id"/>
+    <item name="progress" type="id"/>
+    <item name="stop_button" type="id"/>
+</resources>

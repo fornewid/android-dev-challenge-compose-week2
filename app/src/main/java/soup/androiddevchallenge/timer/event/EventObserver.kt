@@ -13,14 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.androiddevchallenge.ui.theme
+package soup.androiddevchallenge.timer.event
 
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Shapes
-import androidx.compose.ui.unit.dp
+import androidx.compose.runtime.Composable
 
-val shapes = Shapes(
-    small = RoundedCornerShape(4.dp),
-    medium = RoundedCornerShape(4.dp),
-    large = RoundedCornerShape(0.dp)
-)
+/**
+ * An observer for [Event]s, simplifying the pattern of checking if the [Event]'s content has
+ * already been handled.
+ *
+ * [onEventUnhandledContent] is *only* called if the [Event]'s contents has not been handled.
+ */
+@Composable
+fun <T> EventObserver(event: Event<T>?, onEventUnhandledContent: (T) -> Unit) {
+    event?.getContentIfNotHandled()?.let { value ->
+        onEventUnhandledContent(value)
+    }
+}
